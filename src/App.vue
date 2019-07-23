@@ -1,29 +1,53 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <loading-progress
+      :progress="progress"
+      :indeterminate="indeterminate"
+      :counter-clockwise="counterClockwise"
+      :hide-background="hideBackground"
+      size="64"
+      rotate
+      fillDuration="2"
+      rotationDuration="1"
+    />
+    <hr>
+    <loading-progress
+      :progress="progress"
+      :indeterminate="indeterminate"
+      :counter-clockwise="counterClockwise"
+      :hide-background="hideBackground"
+      shape="semicircle"
+      size="64"
+    />
+    <hr>
+    <loading-progress
+      :progress="progress"
+      :indeterminate="indeterminate"
+      :counter-clockwise="counterClockwise"
+      :hide-background="hideBackground"
+      shape="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80"
+      size="180"
+      fill-duration="2"
+    />
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+<script>
+import VueProgress from 'vue-progress-path';
+
+export default {
+  components: {
+    'loading-progress': VueProgress,
+  },
+  data: () => ({
+    progress: '50%',
+    indeterminate: 0,
+    counterClockwise: 0,
+    hideBackground: 0,
+  }),
+};
+</script>
+
+<style lang="less" scoped>
+@import (reference) './vue-progress-path.css';
 </style>
